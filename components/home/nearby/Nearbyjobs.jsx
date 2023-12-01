@@ -1,5 +1,4 @@
-import React from 'react'
-import { View, Text, TouchableOpacity, FlatList , ActivityIndicator } from 'react-native'
+import { View, Text, TouchableOpacity, ActivityIndicator } from 'react-native'
 import { useRouter } from "expo-router";
 import styles from './nearbyjobs.style'
 import {COLORS } from "../../../constants"
@@ -16,7 +15,7 @@ const Nearbyjobs = () => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Popular Jobs</Text>
+        <Text style={styles.headerTitle}>Nearby Jobs</Text>
         <TouchableOpacity>
           <Text style={styles.headerBtn}>Show all</Text>
         </TouchableOpacity>
@@ -28,10 +27,10 @@ const Nearbyjobs = () => {
         ) : error ? (
           <Text>Something went wrong</Text>
         ): (
-          data.map((job) => (
+          data?.map((job) => (
             <NearbyJobCard 
             job={job}
-            key={`nearby-job-${job.job_id}`}
+            key={`nearby-job-${job?.job_id}`}
             handleNavigate = {() => router.push(`/job-details/${job.job_id}`)}
             />
           ))

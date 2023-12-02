@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Text, TouchableOpacity, FlatList , ActivityIndicator } from 'react-native'
 import { useRouter } from "expo-router";
 import styles from './popularjobs.style'
@@ -13,6 +13,14 @@ const Popularjobs = () => {
     query: "React developer",
     num_pages: 1
   })
+
+  const [selectedJob, setSelectedJob] = useState()
+
+
+  const handleCardPress = (item) => {
+    router.push(`/job-details/${item.job_id}`);
+    setSelectedJob(item.job_id)
+  }
   return (
     <View style={styles.container}>
       <View style={styles.header}>
